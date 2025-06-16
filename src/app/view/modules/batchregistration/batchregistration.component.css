@@ -1,0 +1,9 @@
+mat-card {
+  width: 170%;
+  height: 100%;
+  margin: 10px 10px -16px 10px !important;
+}
+
+mat-card-header {
+  background: #c0d9c3;
+}

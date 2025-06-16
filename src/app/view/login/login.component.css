@@ -1,0 +1,56 @@
+mat-card {
+  width: 30%;
+  border: #003300;
+  box-shadow: black 2px 2px 15px;
+}
+
+
+mat-card-header {
+  /*background: #003300;*/
+  background: #6eab47;
+}
+ background-image{
+  background-repeat: no-repeat;
+}
+
+mat-card-title img {
+  width: 26.5rem;
+  height: 100%;
+  text-align: center;
+}
+
+mat-card-title p {
+  color: white;
+  text-align: center;
+}
+
+mat-card-content {
+  padding: 10%;
+}
+
+mat-card-actions {
+  child-align: middle !important;
+}
+
+mat-card-actions button:nth-child(2) {
+  margin-left: 10px;
+}
+
+button {
+  color: white !important;
+}
+
+button[btn-a] {
+  background: darkolivegreen !important;
+
+}
+
+button[btn-b] {
+  background: #355E3B !important;
+}
+
+mat-card-header{
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

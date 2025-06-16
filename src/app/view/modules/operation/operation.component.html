@@ -1,0 +1,103 @@
+<mat-grid-list cols="24" rowHeight="6rem" gutterSize="5px">
+  <mat-grid-tile [colspan]="7" rowspan="4" >
+    <mat-card id="privilageform">
+      <mat-card-title>
+        <mat-card-header><mat-card-title>Operation</mat-card-title></mat-card-header>
+      </mat-card-title>
+      <mat-card-content>
+
+        <form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Operation Type</mat-label>
+            <mat-select [value]="null" formControlName="opetype">
+              <mat-option *ngFor="let opetype of opetypes" [value]="opetype">{{opetype.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Module</mat-label>
+            <mat-select [value]="null" formControlName="module">
+              <mat-option *ngFor="let module of modules" [value]="module">{{module.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Operation</mat-label>
+            <input matInput formControlName="name">
+          </mat-form-field>
+
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!enaadd">Add</button>
+            <button mat-raised-button>Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!enaupd">Update</button>
+            <button mat-raised-button (click)="delete()" [disabled]="!enadel">Delete</button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="8" [rowspan]="4">
+    <mat-card id="ssearch">
+      <mat-card-header><mat-card-title>Search Operation</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <form [formGroup]="ssearch">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Module</mat-label>
+            <mat-select formControlName="ssmodule">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let module of modules" [value]="module.id">{{module.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Operation</mat-label>
+            <mat-select formControlName="ssoperation">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let operation of operations" [value]="operation.id">{{operation.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div>
+            <button mat-raised-button (click)="btnSearchMc()"><mat-icon>search</mat-icon> Search </button>
+            <button mat-raised-button  (click)="btnSearchClearMc()"><mat-icon>reorder</mat-icon> Clear Search </button>
+          </div>
+
+        </form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile colspan="9" rowspan="4">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>Operation Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ uiassist.getProperty(element, binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns;" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedrow}"  ></mat-row>
+
+        </mat-table>
+
+        <mat-paginator [length]="20" [pageSize]="3" [pageSizeOptions]="[3,5,10,20]"></mat-paginator>
+
+      </mat-card-content>
+
+    </mat-card>
+  </mat-grid-tile>
+</mat-grid-list>

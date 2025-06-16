@@ -1,0 +1,39 @@
+<mat-grid-list [cols]="8" rowHeight="8rem">
+  <mat-grid-tile [colspan]="8" [rowspan]="6">
+
+    <mat-card>
+      <mat-card-header style="background-image: url('assets/backgrondhospital.jpeg')">
+        <mat-card-title>
+
+          <h1>MediConnect Login</h1>
+          <p style="color: red">Online Medical Appointment and Pharmacy System</p>
+
+
+        </mat-card-title>
+      </mat-card-header>
+
+      <mat-card-content>
+
+        <form [formGroup]="loginform">
+
+          <mat-form-field appearance="outline">
+            <mat-label>User Name</mat-label>
+            <input matInput formControlName="username" autocomplete="off">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-card-actions align="end">
+            <button btn-a mat-raised-button (click)="authenticate()">Login</button>
+            <button btn-b mat-raised-button (click)="signup()">Sign Up</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+
+    </mat-card>
+
+  </mat-grid-tile>
+</mat-grid-list>

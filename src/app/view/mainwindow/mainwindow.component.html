@@ -1,0 +1,95 @@
+<mat-toolbar>
+  <mat-toolbar-row style="background-image: url('assets/blue.png')">
+
+    <span class="toolbar-left">
+    <button mat-icon-button (click)="opened=!opened" class="btn-nav"><mat-icon>menu</mat-icon></button>
+      <img src="/assets/backgrondhospital.jpeg" class="img-logo">
+    </span>
+
+    <span class="toolbar-right">
+      <label class="lbl-user">{{authService.getUsername().toUpperCase()}}</label>
+      <img src="assets/user1.jpg" class="img-user"/>
+      <button mat-icon-button (click)="logout()" class="btn-logout"><mat-icon>exit_to_app</mat-icon> </button>
+    </span>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+  <mat-sidenav [(opened)]="opened" mode="side">
+
+    <mat-nav-list>
+
+      <mat-list-item>
+        <a routerLink="home"><mat-icon>home</mat-icon>Home</a>
+      </mat-list-item>
+
+      <mat-list-item> <a routerLink="dashboard">
+        <mat-icon>widgets</mat-icon>
+        Dashboard</a></mat-list-item>
+
+      <mat-expansion-panel *ngIf="isMenuVisible('Admin')">
+        <mat-expansion-panel-header>
+          <mat-list-item><a>
+            <mat-icon>person</mat-icon>
+            Admin</a></mat-list-item>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let menuItem of admMenuItems">
+          <mat-list-item *ngIf="menuItem.accessFlag">
+            <mat-list-item class="item" [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null"><a>{{ menuItem.name }}</a></mat-list-item>
+          </mat-list-item>
+        </ng-container>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel *ngIf="isMenuVisible('Academic')">
+        <mat-expansion-panel-header>
+          <mat-list-item><a>
+            <mat-icon>event_note</mat-icon>
+            Academic</a></mat-list-item>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let menuItem of acdMenuItems">
+          <mat-list-item *ngIf="menuItem.accessFlag">
+            <mat-list-item class="item" [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null"><a>{{ menuItem.name }}</a></mat-list-item>
+          </mat-list-item>
+        </ng-container>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel *ngIf="isMenuVisible('Registration')">
+        <mat-expansion-panel-header>
+          <mat-list-item><a>
+            <mat-icon>person_add</mat-icon>
+            Registration</a></mat-list-item>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let menuItem of regMenuItems">
+          <mat-list-item *ngIf="menuItem.accessFlag">
+            <mat-list-item class="item" [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null"><a>{{ menuItem.name }}</a></mat-list-item>
+          </mat-list-item>
+        </ng-container>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel *ngIf="isMenuVisible('Class')">
+        <mat-expansion-panel-header>
+          <mat-list-item><a>
+            <mat-icon>class</mat-icon>
+            Class</a></mat-list-item>
+        </mat-expansion-panel-header>
+        <ng-container *ngFor="let menuItem of clsMenuItems">
+          <mat-list-item *ngIf="menuItem.accessFlag">
+            <mat-list-item class="item" [routerLink]="menuItem.accessFlag ? menuItem.routerLink : null"><a>{{ menuItem.name }}</a></mat-list-item>
+          </mat-list-item>
+        </ng-container>
+      </mat-expansion-panel>
+
+      <mat-list-item>
+        <a routerLink="reports"><mat-icon>poll</mat-icon>Report</a>
+      </mat-list-item>
+
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+
+</mat-sidenav-container>

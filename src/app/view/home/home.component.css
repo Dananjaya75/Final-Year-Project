@@ -1,0 +1,63 @@
+mat-grid-list {
+  /*padding: 10% 20% 10% 20% !important;*/
+  margin: 8px;
+}
+
+mat-grid-tile:nth-child(1) mat-card{
+  padding-top: 20px;
+  align-items: center;
+  background-color: darkslategray;
+}
+
+mat-card {
+  height: 99% !important;
+  width: 100%;
+  margin: 5px;
+  overflow: auto;
+  border-radius: 12px;
+  background-repeat: no-repeat;
+}
+
+mat-card-title{
+  color: white;
+  margin-left: 5px;
+  margin-top: 5px;
+  /*background-color: #8aa88a;*/
+  border-radius: 6px;
+  padding-left: 10px;
+
+}
+
+mat-card #headImg{
+  height: 80%;
+}
+
+#quicklinks mat-card img{
+  scale: 210%;
+  width: 50%;
+  height: 80%;
+  padding-left: 18px;
+  padding-top: 15px;
+}
+
+#quicklinks mat-card{
+  height: unset!important;
+  padding-top: 4px;
+  width: 150px;
+  margin: 0 20px 0 20px;
+  border: solid gold;
+}
+
+mat-card-footer{
+  font-size: 18px;
+  margin-top: 55px;
+  text-align: center;
+  background-color: gold;
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+mat-card-footer a{
+  text-decoration: none;
+  color: black;
+}
