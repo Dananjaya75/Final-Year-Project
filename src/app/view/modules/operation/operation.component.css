@@ -1,0 +1,44 @@
+mat-grid-list{ margin: 8px}
+
+mat-card{width: 100%; height: 100%; }
+
+mat-card-header{padding-bottom: 10px;background: #c0d9c3; margin-bottom: 5px}
+
+#privilageform mat-form-field{ padding-left: 6px;padding-top: 10px}
+#operationform mat-form-field{ padding-left: 6px;padding-top: 10px}
+
+#loading img{ width: 30px; height: 25px; margin-left: 90px;}
+
+#ssearch mat-card-content{   padding-top: 10px; }
+
+#ssearch mat-form-field { padding-left: 15px; width: 90%; }
+
+#ssearch button{ width: 155px; margin-left:10px; margin-top: 5px; background-color: #435f3b; color: white  }
+
+#innertable mat-table{ border: solid #8aa88a;}
+
+#btnAdd{background-color: #355E3B;color: white;left: 1px;bottom: 10px;}
+
+#btnSave{background-color: #355E3B;color: white;left: 1px;bottom: 10px;}
+
+#butpanel button{width: 78px;margin:3px;background-color: #435f3b;color: white; }
+#opbutpanel button{width: 78px;margin:3px;background-color: #435f3b;color: white; }
+
+mat-table{overflow: auto;}
+
+.selected-row{
+  background-color: #c9e6ff!important;
+}
+
+.mat-row:hover {
+  background-color: inherit!important;
+}
+
+#privilageform mat-form-field .ng-dirty{
+  background-color: gold;
+}
+
+
+button:disabled {
+  opacity: 0.5;
+}

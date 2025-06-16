@@ -1,0 +1,43 @@
+
+mat-card {  width: 100%;  height:100%;  margin: 10px 10px -10px 10px ; }
+
+mat-card-content { overflow: auto; height: 100%; }
+
+mat-card-header { background: #c0d9c3; }
+
+#loading img{ width: 30px; height: 25px; margin-left: 200px;}
+
+.csearch{   height: 40px;   width: 100%;  margin-top: 5px;    }
+
+#ssearch mat-card-content{   padding-top: 30px; }
+
+#ssearch mat-form-field { padding-left: 15px; width: 200px; }
+
+#ssearch button{ width: 195px; margin-left:10px; margin-top: 5px; background-color: #435f3b; color: white}
+
+#userform { padding-top: 20px; }
+
+#butpanel button{ width: 82px;margin:3px;background-color: #435f3b;color: white;}
+
+#listtrnasfer {display: inline-flex; margin-bottom: 30px;margin-left: 10px}
+
+#pnlmiddle button{ margin: 8px; display: block!important;}
+
+.list{ border: solid gray; border-radius: 5px; max-height: 160px; width: 180px;margin-top: 10px; overflow: auto}
+
+.list mat-list-option{ height: 27px;}
+
+.list .mat-mdc-list-item .mdc-list-item__primary-text{ font-size: 14px!important;}
+
+.selected-row{ background-color: #c9e6ff!important; }
+
+.mat-row:hover { background-color: inherit!important; }
+
+#userform mat-form-field .ng-dirty{
+  background-color: gold;
+}
+
+
+button:disabled {
+  opacity: 0.5;
+}

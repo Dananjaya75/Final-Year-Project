@@ -1,0 +1,177 @@
+<mat-grid-list [cols]="12" rowHeight="6rem">
+
+  <mat-grid-tile [colspan]="5" [rowspan]="7">
+
+    <mat-card>
+      <mat-card-header><mat-card-title>User Detail</mat-card-title></mat-card-header>
+      <mat-card-content id="userform">
+
+        <form [formGroup]="form">
+
+          <mat-form-field appearance="outline">
+            <mat-label>Employee</mat-label>
+            <mat-select formControlName="employee">
+              <mat-option [value]="null" selected >Not Selected</mat-option>
+              <mat-option *ngFor="let employee of employees" [value]="employee">{{employee.callingname}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Username</mat-label>
+            <input matInput  formControlName="username">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Password</mat-label>
+            <input matInput type="password" formControlName="password">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Confirm Password</mat-label>
+            <input matInput type="password" formControlName="confirmpassword">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Description</mat-label>
+            <textarea matInput formControlName="description"></textarea>
+          </mat-form-field>
+
+          <div id="listtrnasfer">
+
+            <div class="list">
+              <mat-selection-list  #availablelist>
+                <mat-list-option  multiple  *ngFor="let role of roles" [value]="role" >{{role.name}}</mat-list-option>
+              </mat-selection-list>
+            </div>
+
+            <div id="pnlmiddle">
+                <button mat-raised-button (click)="rightSelected()">&gt;</button>
+                <button mat-raised-button (click)="leftSelected()">&lt;</button>
+                <button mat-raised-button (click)="rightAll()">&gt;&gt;</button>
+                <button mat-raised-button (click)="leftAll()">&lt;&lt;</button>
+            </div>
+
+            <div class="list">
+              <mat-selection-list  formControlName="userroles" #selectedlist>
+                <mat-list-option  *ngFor="let userrole of userroles" [value]="userrole">{{userrole.role.name}}</mat-list-option>
+              </mat-selection-list>
+            </div>
+
+          </div>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Time of Created</mat-label>
+            <input matInput readonly  formControlName="tocreated">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Create Date</mat-label>
+            <input matInput [min]="mindate" [matDatepicker]="crdate" formControlName="docreated">
+            <mat-datepicker-toggle matIconSuffix [for]="crdate"></mat-datepicker-toggle>
+            <mat-datepicker #crdate ></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>User Status</mat-label>
+            <mat-select formControlName="usestatus">
+              <mat-option selected >Not Selected</mat-option>
+              <mat-option  *ngFor="let userstatus of userstatues" [value]="userstatus">{{userstatus.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>User Type</mat-label>
+            <mat-select formControlName="usetype">
+              <mat-option selected >Not Selected</mat-option>
+              <mat-option  *ngFor="let usertype of usertypes" [value]="usertype">{{usertype.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div id="butpanel">
+            <button mat-raised-button (click)="add()" [disabled]="!enaadd">Add</button>
+            <button mat-raised-button>Clear</button>
+            <button mat-raised-button (click)="update()" [disabled]="!enaupd">Update</button>
+            <button mat-raised-button (click)="delete()" [disabled]="!enadel">Delete</button>
+          </div>
+        </form>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="7" [rowspan]="2">
+
+    <mat-card id="ssearch">
+      <mat-card-header><mat-card-title>User Search</mat-card-title></mat-card-header>
+      <mat-card-content>
+        <mat-form [formGroup]="ssearch">
+          <mat-form-field appearance="outline">
+            <mat-label>Search by Employee</mat-label>
+            <input matInput formControlName="ssemployee">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Search by User Name</mat-label>
+            <input matInput formControlName="ssusername">
+          </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Role</mat-label>
+            <mat-select formControlName="ssrole">
+              <mat-option [value]="null" selected>Not Selected</mat-option>
+              <mat-option *ngFor="let role of roles" [value]="role.id">{{role.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+
+          <div>
+            <button mat-raised-button (click)="btnSearchMc()"><mat-icon>search</mat-icon> Search </button>
+            <button mat-raised-button  (click)="btnSearchClearMc()"><mat-icon>reorder</mat-icon> Clear Search </button>
+          </div>
+
+        </mat-form>
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+  <mat-grid-tile [colspan]="7" [rowspan]="5">
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title>User Table</mat-card-title>
+        <div id="loading">
+          <img [src]="imageurl">
+        </div>
+      </mat-card-header>
+      <mat-card-content>
+        <mat-table [dataSource]="data">
+
+          <ng-container *ngFor="let column of columns;let i = index;" [matColumnDef]="column">
+            <mat-header-cell *matHeaderCellDef> {{headers[i]}} </mat-header-cell>
+            <mat-cell *matCellDef="let element">{{ uiassist.getProperty(element, binders[i]) }} </mat-cell>
+          </ng-container>
+
+          <ng-container *ngFor="let cscolumn of cscolumns;let i = index;" [matColumnDef]="cscolumn">
+            <mat-header-cell *matHeaderCellDef>
+              <mat-form [formGroup]="csearch" class="csearch">
+                <mat-form-field appearance="outline">
+                  <mat-label>{{csprompts[i]}}</mat-label>
+                  <input matInput [formControlName]="cscolumn"
+                         (keyup)="filterTable()">
+                </mat-form-field>
+              </mat-form>
+            </mat-header-cell>
+          </ng-container>
+
+          <mat-header-row *matHeaderRowDef="columns"></mat-header-row>
+          <mat-header-row *matHeaderRowDef="cscolumns"></mat-header-row>
+          <mat-row *matRowDef="let row; columns: columns;" (click)="fillForm(row)" [ngClass]="{'selected-row': row === selectedrow}"></mat-row>
+
+        </mat-table>
+
+        <mat-paginator [length]="20" [pageSize]="3" [pageSizeOptions]="[3,5,10,20]" showFirstLastButtons></mat-paginator>
+
+      </mat-card-content>
+    </mat-card>
+  </mat-grid-tile>
+
+
+</mat-grid-list>
